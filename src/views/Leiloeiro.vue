@@ -71,13 +71,14 @@ export default {
     async carregarLances () {
       this.lances = await getLances(this.id)
     },
-    onNovoLance (valor) {
+    async onNovoLance (valor) {
       const lance = {
         valor: parseInt(valor),
         data: new Date(),
         leilao_id: parseInt(this.id)
       }
-      lance.id = createLance(lance)
+      lance.id = await createLance(lance)
+      
       this.lances.push(lance)
     }
   },
